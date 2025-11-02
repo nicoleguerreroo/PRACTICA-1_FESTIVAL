@@ -28,30 +28,49 @@ h2 {
 
 header {
     width: 100%;
-    height: 100vh;
+    height: 60vh;
     position: sticky;
     top: calc(-100vh + 3em); 
     z-index: 1;
-    background-image: url(../img/fondo.jpg);
+    background-image: url(../img/fondo\ tickets.webp);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
 }
-
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
 header > p {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 12vw;
+    font-size: 6vw;
     width: 2em;
     margin-left: 1rem;
     z-index: 1;
     font-weight:bold;
-    color: yellow;
-    mix-blend-mode:exclusion; 
+    color: rgb(255, 255, 255);
+    mix-blend-mode:normal; 
 }
-
+header > p {
+    text-align: justify;
+    width: 70%;
+    margin: 0 auto;
+    font-size: 6vw;
+    color: rgb(255, 255, 255);
+}
+header > p::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+}
 #menu {
     position: fixed;
     top: 0;

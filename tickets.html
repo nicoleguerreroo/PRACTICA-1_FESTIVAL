@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomorrowland - Tickets</title>
+    <link rel="stylesheet" href="css/tickets.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c3fd22b8e3.js" crossorigin="anonymous"></script>
+    <script src="js/tickets.js"></script>
+</head>
+<body>
+
+<header>
+    <p>Buy your tickets NOW</p>
+
+    <nav id="menu">
+        <div>
+            <a href="index.html" class="home"><i class="fas fa-home-alt"></i></a>
+        </div>
+        <div>
+            <i class="fas fa-search"></i>
+            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-music"></i>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section id="tickets-section">
+        <h2>Buy your tickets</h2>
+        <p>Select the quantity and type of ticket to live the Tomorrowland´s experience</p>
+
+        <form id="ticket-form">
+            <label for="ticket-type">Ticket type</label>
+            <select id="ticket-type" name="ticket-type" required>
+                <option value="">Select</option>
+                <option value="general">General Admission</option>
+                <option value="vip">VIP</option>
+                <option value="ultimate">Ultimate Experience</option>
+            </select>
+
+            <label for="ticket-quantity">Quantity</label>
+            <input type="number" id="ticket-quantity" name="ticket-quantity" min="1" max="10" value="1" required>
+
+            <label for="name">Name and surname</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Mail</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Buy Tickets</button>
+        </form>
+
+        <p id="confirmation-message" style="display:none; color:green; margin-top:1em;">Thank you for your shopping! You will recive a confirmation mail.</p>
+    </section>
+
+    <!-- Sección de información adicional -->
+    <section id="info">
+        <h2>IMPORTANT INFORMATION</h2>
+        <ul>
+            <li>Tickets are personal and non-transferable. </li>
+            <li>Valid ID is required at the entrance.</li>
+            <li>Please check our official website for opening times and regulations.</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Tomorrowland. All rights reserved.</p>
+</footer>
+
+<script>
+    
+    document.getElementById('ticket-form').addEventListener('submit', function(e){
+        e.preventDefault();
+        
+        document.getElementById('confirmation-message').style.display = 'block';
+        
+    });
+</script>
+
+</body>
+</html>

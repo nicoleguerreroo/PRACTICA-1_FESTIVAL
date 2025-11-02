@@ -1,13 +1,14 @@
 /* abre el menu */
 function openMenu() {
-    console.log("funcion openMenu");
-    document.getElementById("menu").firstElementChild.lastElementChild.style.left = "0";
-
+    if (window.innerWidth <= 750) {
+        document.getElementById("menu").firstElementChild.lastElementChild.style.left = "0";
+    }
 }
-/* cierra el menu */
+
 function closeMenu() {
-    console.log("funcion closeMenu");
-    document.getElementById("menu").firstElementChild.lastElementChild.style.left = "-100%";
+    if (window.innerWidth <= 750) {
+        document.getElementById("menu").firstElementChild.lastElementChild.style.left = "-100%";
+    }
 }
 
 /* abre ventana modal */
@@ -73,4 +74,20 @@ function changeOpacity(){
 //detectamos el scroll con un callback
 window.onscroll = function () {
     changeOpacity();
+}
+
+function changeOpacity() {
+    const scroll = window.scrollY;
+    const menu = document.getElementById("menu");
+    const max_scroll = 200;
+    const links = menu.querySelectorAll("a, i");
+
+    if (scroll < max_scroll) {
+        const opacity = scroll / max_scroll;
+        menu.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+        links.forEach(link => link.style.color = "white");
+    } else {
+        menu.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+        links.forEach(link => link.style.color = "yellow");
+    }
 }
