@@ -1,12 +1,15 @@
-/* =========================================================================
-   1. VARIABLES DE DISEÑO (CSS3) Y REGLAS GLOBALES
-   ========================================================================= */
 :root {
     --fuente-titulos: 'Titillium Web', sans-serif;
     --fuente-texto: 'Montserrat', sans-serif;
     --color-dorado: #d4af37;
     --bg-header-translucido: rgba(10, 10, 10, 0.82);
+    --bg-oscuro-puro: #000000;
+    --bg-tarjetas: #0a0a0a;
+    --bg-inputs: #161616;
     --text-white: #ffffff;
+    --text-muted: #666666;
+    --text-silver: #cccccc;
+    --text-placeholder: #aaaaaa;
     --transition-smooth: 0.35s ease;
 }
 
@@ -19,12 +22,12 @@
 html {
     scroll-behavior: smooth;
     font-family: var(--fuente-texto);
-    background-color: #000000; /* Fondo base inmersivo */
-    color: #ffffff;
 }
 
 body {
-    padding-top: 75px; /* Evita que el header fijo tape el contenido principal */
+    padding-top: 75px;
+    background-color: var(--bg-oscuro-puro);
+    color: var(--text-white);
 }
 
 img {
@@ -50,9 +53,6 @@ main {
     margin: 3rem auto;
 }
 
-/* =========================================================================
-   2. ESTRUCTURA FIJA E INTERACTIVIDAD DEL HEADER (NAVBAR)
-   ========================================================================= */
 .main-header {
     position: fixed;
     top: 0;
@@ -128,6 +128,4 @@ main {
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width:
+    bottom:

@@ -1,6 +1,3 @@
-/* =========================================================================
-   1. VARIABLES DE DISEÑO (CSS3) Y REGLAS GLOBALES
-   ========================================================================= */
 :root {
     --fuente-titulos: 'Titillium Web', sans-serif;
     --fuente-texto: 'Montserrat', sans-serif;
@@ -19,12 +16,12 @@
 html {
     scroll-behavior: smooth;
     font-family: var(--fuente-texto);
-    background-color: #000000; /* Fondo base coherente con el festival */
+    background-color: #000000; 
     color: #ffffff;
 }
 
 body {
-    padding-top: 75px; /* Colchón para evitar que el header fijo pise el contenido */
+    padding-top: 75px; 
 }
 
 img {
@@ -44,9 +41,6 @@ h2 {
     text-transform: uppercase;
 }
 
-/* =========================================================================
-   2. ESTRUCTURA FIJA Y INTERACTIVIDAD DEL HEADER (NAVBAR)
-   ========================================================================= */
 .main-header {
     position: fixed;
     top: 0;
@@ -157,7 +151,6 @@ h2 {
     color: var(--color-dorado);
 }
 
-/* BUSCADOR DESPLEGABLE */
 .search-box {
     display: flex;
     align-items: center;
@@ -183,7 +176,6 @@ h2 {
     border: 1px solid var(--color-dorado);
 }
 
-/* BOTÓN HAMBURGUESA */
 .hamburger-btn {
     display: none;
     flex-direction: column;
@@ -202,9 +194,6 @@ h2 {
     border-radius: 2px;
 }
 
-/* =========================================================================
-   3. MAQUETACIÓN DE SECCIONES GENERALES Y CONTENIDO (HOME)
-   ========================================================================= */
 section {
     width: 85%;
     max-width: 1400px;
@@ -220,7 +209,6 @@ section > p {
     line-height: 1.6;
 }
 
-/* SECCIÓN BIENVENIDA / FESTIVAL */
 #festival {
     display: flex;
     justify-content: space-between;
@@ -247,55 +235,112 @@ section > p {
     margin-top: 1rem;
 }
 
-/* SECCIÓN EXPERIENCIAS */
 .experiences-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
-.experiences-grid figure {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
+.experience-card {
+    flex: 1 1 calc(25% - 1.2rem); 
+    min-width: 250px;             
+    background-color: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform var(--transition-smooth);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.35s ease;
 }
 
-.experiences-grid figure:hover {
+.experience-card:hover {
     transform: translateY(-5px);
 }
 
-.experiences-grid figure img {
-    height: 280px;
+.experience-card img {
     width: 100%;
+    height: 200px;
     object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.experiences-grid figure:hover img {
-    transform: scale(1.04);
+.experience-card figcaption {
+    padding: 1.2rem;
 }
 
-.experiences-grid figcaption {
-    padding: 1.5rem;
-    background: #0f0f0f;
+.experience-card h3 {
+    color: #d4af37;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
-.experiences-grid figcaption h3 {
-    color: var(--color-dorado);
-    margin-bottom: 0.4rem;
-    font-size: 1.2rem;
-}
-
-.experiences-grid figcaption p {
-    font-size: 0.9rem;
+.experience-card p {
     color: #aaaaaa;
+    font-size: 0.85rem;
     line-height: 1.5;
 }
 
-/* SECCIÓN TIENDA OFICIAL */
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 750px;
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.modal-content figcaption {
+    padding: 1.5rem;
+    color: #ffffff;
+}
+
+.modal-content figcaption h3 {
+    color: #d4af37;
+    margin-bottom: 0.5rem;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #ffffff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 3100;
+}
+
+.close-modal-btn:hover {
+    color: #d4af37;
+}
+
+@media (max-width: 768px) {
+    .experience-card {
+        flex: 1 1 100%; 
+    }
+}
 .store-grid {
     display: flex;
     justify-content: space-between;
@@ -327,7 +372,6 @@ section > p {
     font-size: 0.9rem;
 }
 
-/* SECCIÓN MÚSICA */
 .music-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -346,7 +390,6 @@ section > p {
     margin-bottom: 0.5rem;
 }
 
-/* SECCIÓN MORE ABOUT US */
 .more-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -363,7 +406,6 @@ section > p {
     line-height: 1.6;
 }
 
-/* SECCIÓN CONTACTO */
 .contacto-container {
     display: flex;
     justify-content: space-between;
@@ -387,7 +429,6 @@ section > p {
     border-radius: 6px;
 }
 
-/* PIE DE PÁGINA */
 footer {
     background-color: #000000;
     color: #666666;
@@ -397,11 +438,7 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* =========================================================================
-   4. COMPONENTES INTERACTIVOS (MODAL Y CARRITO SIDEBAR)
-   ========================================================================= */
 
-/* VENTANA MODAL FLOTANTE */
 #modal {
     position: fixed;
     z-index: 3500;
@@ -468,7 +505,7 @@ footer {
     color: var(--color-dorado);
 }
 
-/* COMPONENTE CARRITO LATERAL */
+
 .cart-icon-wrapper {
     position: relative;
     cursor: pointer;
@@ -612,9 +649,6 @@ footer {
     color: #000;
 }
 
-/* =========================================================================
-   5. DISEÑO ADAPTATIVO (MEDIA QUERIES RESPONSIVE)
-   ========================================================================= */
 @media (max-width: 992px) {
     body {
         padding-top: 70px;
@@ -624,7 +658,6 @@ footer {
         display: flex;
     }
 
-    /* Menú móvil desplegable vertical */
     .nav-menu {
         position: absolute;
         top: 100%;
@@ -648,7 +681,6 @@ footer {
         gap: 1.6rem;
     }
 
-    /* Animaciones de Hamburguesa a X */
     .hamburger-btn.open span:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
         background-color: var(--color-dorado);
@@ -663,7 +695,6 @@ footer {
         background-color: var(--color-dorado);
     }
 
-    /* Ajustes de rejillas en tablets */
     #festival {
         flex-direction: column;
         gap: 2rem;
@@ -698,7 +729,7 @@ footer {
 
 @media (max-width: 480px) {
     .brand-name {
-        display: none; /* Esconde el texto en móviles pequeños para dejar espacio al logo grande */
+        display: none; 
     }
     
     h2 {
@@ -707,5 +738,211 @@ footer {
 
     .search-box.active input {
         width: 110px;
+    }
+}
+.experiences-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.experience-card {
+    flex: 1 1 calc(50% - 1rem);
+    min-width: 280px;
+    background-color: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.35s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+}
+
+.experience-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.experience-card figcaption {
+    padding: 1.5rem;
+}
+
+.experience-card h3 {
+    color: #d4af37;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.experience-card p {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 750px;
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.modal-content figcaption {
+    padding: 1.5rem;
+    color: #ffffff;
+}
+
+.modal-content figcaption h3 {
+    color: #d4af37;
+    margin-bottom: 0.5rem;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #ffffff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 3100;
+}
+
+.close-modal-btn:hover {
+    color: #d4af37;
+}
+.experiences-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.experience-card {
+    flex: 1 1 calc(25% - 1.2rem); 
+    min-width: 250px;             
+    background-color: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.35s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+}
+
+.experience-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.experience-card figcaption {
+    padding: 1.2rem;
+}
+
+.experience-card h3 {
+    color: #d4af37;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.experience-card p {
+    color: #aaaaaa;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 750px;
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.modal-content figcaption {
+    padding: 1.5rem;
+    color: #ffffff;
+}
+
+.modal-content figcaption h3 {
+    color: #d4af37;
+    margin-bottom: 0.5rem;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #ffffff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 3100;
+}
+
+.close-modal-btn:hover {
+    color: #d4af37;
+}
+
+@media (max-width: 768px) {
+    .experience-card {
+        flex: 1 1 100%; 
     }
 }

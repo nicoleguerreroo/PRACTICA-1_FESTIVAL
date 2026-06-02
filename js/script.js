@@ -1,4 +1,3 @@
-// --- MANEJO DEL MENÚ RESPONSIVE ---
 function openMenu() {
     const menuUl = document.querySelector('#menu > div:first-child > ul');
     if (menuUl) {
@@ -13,21 +12,16 @@ function closeMenu() {
     }
 }
 
-// --- MANEJO DE LA VENTANA MODAL INTERACTIVA ---
 function openModal(element) {
     const modal = document.getElementById('modal');
     
-    // Extracción de datos del elemento que disparó el click
     const targetImg = element.querySelector('img');
     const targetCaption = element.querySelector('figcaption');
 
     if (modal && targetImg && targetCaption) {
-        // Clonación de la información hacia dentro de la estructura modal
         modal.querySelector('img').src = targetImg.src;
         modal.querySelector('img').alt = targetImg.alt;
         modal.querySelector('figcaption').innerHTML = targetCaption.innerHTML;
-        
-        // Cambio de propiedad visual para mostrarlo en pantalla
         modal.style.display = 'flex';
     }
 }
@@ -38,27 +32,22 @@ function closeModal() {
         modal.style.display = 'none';
     }
 }
-// --- INTERACTIVIDAD DEL BUSCADOR ---
 function toggleSearch() {
     const searchBox = document.getElementById('searchBox');
     const searchInput = document.getElementById('searchInput');
     
     searchBox.classList.toggle('active');
     
-    // Si se activa, pone automáticamente el foco en el input para escribir
     if (searchBox.classList.contains('active')) {
         searchInput.focus();
     }
 }
 
-// --- INTERACTIVIDAD DEL CARRITO LATERAL ---
 function toggleCart() {
     const cartPanel = document.getElementById('cartPanel');
     cartPanel.classList.toggle('open');
 }
 
-// --- LÓGICA DE SIMULACIÓN DEL CARRITO ---
-// Estructura de datos para guardar los elementos seleccionados temporalmente
 let cart = [];
 
 function updateCartUI() {
@@ -116,28 +105,18 @@ function proceedToCheckout() {
         toggleCart();
     }
 }
-// --- CERRAR MODAL AL HACER CLIC FUERA DE LA IMAGEN (EN EL FONDO) ---
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modal');
     
     if (modal) {
         modal.addEventListener('click', function(event) {
-            // event.target es el elemento exacto donde el usuario hizo clic.
-            // Si el clic es en el contenedor '#modal' (el fondo oscuro) 
-            // y NO dentro de '.modal-content' (la caja de la imagen), se cierra.
             if (event.target === modal) {
                 closeModal();
             }
         });
     }
 });
-// =========================================================================
-// NUEVA INTERACTIVIDAD: RETORNO AL INICIO Y MENÚ DE HAMBURGUESA RESPOSIVE
-// =========================================================================
 
-/**
- * Realiza un scroll suave automático hasta la parte superior de la ventana web
- */
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -145,9 +124,6 @@ function scrollToTop() {
     });
 }
 
-/**
- * Controla la apertura/cierre dinámico del menú de hamburguesa en entorno móvil
- */
 function toggleMobileMenu() {
     const navMenu = document.getElementById('navMenu');
     const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -158,7 +134,6 @@ function toggleMobileMenu() {
     }
 }
 
-// Escuchador para cerrar el menú del móvil si se pincha en un enlace de sección interno
 document.addEventListener('DOMContentLoaded', () => {
     const mobileLinks = document.querySelectorAll('.nav-links a');
     mobileLinks.forEach(link => {
