@@ -173,3 +173,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const ticketForm = document.getElementById('ticket-form');
+    
+    if (ticketForm) {
+        ticketForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const ticketType = document.getElementById('ticketType').value;
+            const quantity = document.getElementById('quantity').value;
+            
+            const errorDiv = document.getElementById('error-message');
+            const successDiv = document.getElementById('confirmation-message');
+            
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            if (fullName === "" || email === "" || ticketType === "" || quantity === "") {
+                errorDiv.textContent = "All fields are required. Please complete the form.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorDiv.textContent = "Please enter a valid email address.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            if (parseInt(quantity) < 1 || parseInt(quantity) > 10) {
+                errorDiv.textContent = "You can only purchase between 1 and 10 tickets.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            successDiv.textContent = `Thank you, ${fullName}! Your request for ${quantity} ticket(s) has been processed successfully. Check your email.`;
+            successDiv.style.display = 'block';
+            
+            ticketForm.reset();
+        });
+    }
+});
