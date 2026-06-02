@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomorrowland - Tickets</title>
+    <title>TOMORROWLAND - Tickets</title>
+    <link href="img/FAVICON.png" rel="icon" type="image/png">
+    
     <link rel="stylesheet" href="css/tickets.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Titillium+Web&display=swap" rel="stylesheet">
+    
     <script src="https://kit.fontawesome.com/c3fd22b8e3.js" crossorigin="anonymous"></script>
-    <script src="js/tickets.js"></script>
 </head>
 <body>
-
 <header>
     <p>Buy your tickets NOW</p>
-
     <nav id="menu">
         <div>
-            <a href="index.html" class="home"><i class="fas fa-home-alt"></i></a>
+            <a href="index.html" class="home"><i class="fas fa-home"></i> Back to Home</a>
         </div>
         <div>
             <i class="fas fa-search"></i>
@@ -31,56 +31,81 @@
 <main>
     <section id="tickets-section">
         <h2>Buy your tickets</h2>
-        <p>Select the quantity and type of ticket to live the Tomorrowland´s experience</p>
+        <p style="margin-bottom: 2rem;">Select the quantity and type of ticket to live the Tomorrowland experience</p>
 
-        <form id="ticket-form">
+        <div class="pricing-cards">
+            <div class="card">
+                <h3>General Admission</h3>
+                <p class="price">150€</p>
+                <p>Full weekend access to all general stages and camps.</p>
+            </div>
+            <div class="card VIP">
+                <h3>VIP Comfort Pass</h3>
+                <p class="price">350€</p>
+                <p>Access to comfort zones, premium views, and fast lanes.</p>
+            </div>
+            <div class="card">
+                <h3>Ultimate Pass</h3>
+                <p class="price">800€</p>
+                <p>All VIP perks plus exclusive backstage tours and catering.</p>
+            </div>
+        </div>
+
+        <form id="ticket-form" novalidate>
             <label for="ticket-type">Ticket type</label>
-            <select id="ticket-type" name="ticket-type" required>
-                <option value="">Select</option>
-                <option value="general">General Admission</option>
-                <option value="vip">VIP</option>
-                <option value="ultimate">Ultimate Experience</option>
+            <select id="ticket-type" name="ticket-type">
+                <option value="">Select pass</option>
+                <option value="general">General Admission - 150€</option>
+                <option value="vip">VIP Comfort Pass - 350€</option>
+                <option value="ultimate">Ultimate Experience - 800€</option>
             </select>
 
             <label for="ticket-quantity">Quantity</label>
-            <input type="number" id="ticket-quantity" name="ticket-quantity" min="1" max="10" value="1" required>
+            <input type="number" id="ticket-quantity" name="ticket-quantity" min="1" max="10" value="1">
 
             <label for="name">Name and surname</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" placeholder="John Doe">
 
-            <label for="email">Mail</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com">
 
-            <button type="submit">Buy Tickets</button>
+            <button type="submit">Complete Purchase</button>
         </form>
 
-        <p id="confirmation-message" style="display:none; color:green; margin-top:1em;">Thank you for your shopping! You will recive a confirmation mail.</p>
+        <p id="confirmation-message">Thank you for your purchase! You will receive a confirmation mail shortly.</p>
     </section>
 
-    <!-- Sección de información adicional -->
     <section id="info">
         <h2>IMPORTANT INFORMATION</h2>
         <ul>
-            <li>Tickets are personal and non-transferable. </li>
-            <li>Valid ID is required at the entrance.</li>
-            <li>Please check our official website for opening times and regulations.</li>
+            <li>Tickets are personal and non-transferable.</li>
+            <li>Valid ID/Passport is mandatory at the main entrance.</li>
+            <li>Please review official regulations regarding luggage and safety rules.</li>
         </ul>
     </section>
 </main>
 
 <footer>
-    <p>&copy; 2025 Tomorrowland. All rights reserved.</p>
+    <p>© 2026 Tomorrowland. All rights reserved.</p>
 </footer>
 
-<script>
-    
-    document.getElementById('ticket-form').addEventListener('submit', function(e){
-        e.preventDefault();
-        
-        document.getElementById('confirmation-message').style.display = 'block';
-        
-    });
-</script>
-
+<script src="js/tickets.js" defer></script>
+<div id="cartPanel" class="cart-sidebar">
+    <div class="cart-sidebar-header">
+        <h3>Shopping Cart</h3>
+        <i class="fas fa-times" onclick="toggleCart()"></i>
+    </div>
+    <div class="cart-sidebar-body">
+        <p id="emptyCartMessage" class="empty-cart">Your cart is empty.</p>
+        <div id="cartItemsContainer"></div>
+    </div>
+    <div class="cart-sidebar-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotalAmount">0€</span>
+        </div>
+        <button class="checkout-btn" onclick="proceedToCheckout()">Checkout Now</button>
+    </div>
+</div>
 </body>
 </html>

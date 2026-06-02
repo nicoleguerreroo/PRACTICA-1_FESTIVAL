@@ -1,93 +1,133 @@
-/* abre el menu */
+// --- MANEJO DEL MENÚ RESPONSIVE ---
 function openMenu() {
-    if (window.innerWidth <= 750) {
-        document.getElementById("menu").firstElementChild.lastElementChild.style.left = "0";
+    const menuUl = document.querySelector('#menu > div:first-child > ul');
+    if (menuUl) {
+        menuUl.style.left = '0';
     }
 }
 
 function closeMenu() {
-    if (window.innerWidth <= 750) {
-        document.getElementById("menu").firstElementChild.lastElementChild.style.left = "-100%";
+    const menuUl = document.querySelector('#menu > div:first-child > ul');
+    if (menuUl) {
+        menuUl.style.left = '-100%';
     }
 }
 
-/* abre ventana modal */
-function openModal(figura) {
-    console.log("funcion openModal");
-    // buscamos la ventana modal
-    var modal = document.getElementById("modal");
-    var rutaImagen = figura.firstElementChild.getAttribute("src");
-    console.log("Valor de la ruta de la imagen: " + rutaImagen)
-    var pieImagen = figura.lastElementChild.innerHTML;
-    console.log("Pie de imagen: " + pieImagen);
-
-    window.addEventListener("click", function (event) {
-        var modal = document.getElementById("modal");
+// --- MANEJO DE LA VENTANA MODAL INTERACTIVA ---
+function openModal(element) {
+    const modal = document.getElementById('modal');
     
-        // Si el click fue directamente sobre el fondo del modal (no dentro de la figura)
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
+    // Extracción de datos del elemento que disparó el click
+    const targetImg = element.querySelector('img');
+    const targetCaption = element.querySelector('figcaption');
 
-    //opcion 1 para cambiar el atributo src de la imagen de la ventana modal
-    //modal.querySelector("img").src = rutaImagen;
-
-    //opcion 2 para cambiar el atributo, movernos por los hijos
-    modal.firstElementChild.firstElementChild.setAttribute("src" , rutaImagen);
-
-    //cambiamos el valor del figcaption con la primera opcion
-    modal.querySelector("figcaption").innerHTML = pieImagen;
-
-    modal.style.display = "flex";
-}
-
-/* cierra ventana modal */
-function closeModal(figura) {
-    console.log("funcion closeModal");
-    // buscamos la ventana modal
-    var modal = document.getElementById("modal");
-    modal.style.display = "none";
-}
-
-//funcion para cambiar la opcaidad
-function changeOpacity(){
-    console.log("changeOpacity");
-
-    //posicon del scroll en la qu estoy
-    var scroll = window.scrollY;
-    console.log("scroll: " + scroll);
-
-
-    //posicion del scroll en la que esta el elemento menu
-    //es el alto de la ventana menos el alto del menu
-    var max_scroll = window.innerHeight - document.getElementById("menu").clientHeight;
-    console.log("max_scroll: " + max_scroll);
-    if (scroll <= max_scroll) {
-        //calculamos el valor del alpha
-        var opacity = scroll / max_scroll;
-        console.log("opacidad: " + opacity);
-        document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, " + opacity + ")";
+    if (modal && targetImg && targetCaption) {
+        // Clonación de la información hacia dentro de la estructura modal
+        modal.querySelector('img').src = targetImg.src;
+        modal.querySelector('img').alt = targetImg.alt;
+        modal.querySelector('figcaption').innerHTML = targetCaption.innerHTML;
+        
+        // Cambio de propiedad visual para mostrarlo en pantalla
+        modal.style.display = 'flex';
     }
 }
 
-//detectamos el scroll con un callback
-window.onscroll = function () {
-    changeOpacity();
+function closeModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+// --- INTERACTIVIDAD DEL BUSCADOR ---
+function toggleSearch() {
+    const searchBox = document.getElementById('searchBox');
+    const searchInput = document.getElementById('searchInput');
+    
+    searchBox.classList.toggle('active');
+    
+    // Si se activa, pone automáticamente el foco en el input para escribir
+    if (searchBox.classList.contains('active')) {
+        searchInput.focus();
+    }
 }
 
-function changeOpacity() {
-    const scroll = window.scrollY;
-    const menu = document.getElementById("menu");
-    const max_scroll = 200;
-    const links = menu.querySelectorAll("a, i");
+// --- INTERACTIVIDAD DEL CARRITO LATERAL ---
+function toggleCart() {
+    const cartPanel = document.getElementById('cartPanel');
+    cartPanel.classList.toggle('open');
+}
 
-    if (scroll < max_scroll) {
-        const opacity = scroll / max_scroll;
-        menu.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-        links.forEach(link => link.style.color = "white");
+// --- LÓGICA DE SIMULACIÓN DEL CARRITO ---
+// Estructura de datos para guardar los elementos seleccionados temporalmente
+let cart = [];
+
+function updateCartUI() {
+    const cartBadge = document.getElementById('cartBadge');
+    const emptyCartMessage = document.getElementById('emptyCartMessage');
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const cartTotalAmount = document.getElementById('cartTotalAmount');
+    
+    // Actualizar número del badge superior
+    cartBadge.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+        cartItemsContainer.innerHTML = '';
+        cartTotalAmount.textContent = '0€';
     } else {
-        menu.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
-        links.forEach(link => link.style.color = "yellow");
+        emptyCartMessage.style.display = 'none';
+        cartItemsContainer.innerHTML = '';
+        
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+            total += item.price * item.quantity;
+            
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            itemElement.innerHTML = `
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>${item.quantity}x - ${item.price}€</p>
+                </div>
+                <button class="remove-item-btn" onclick="removeFromCart(${index})">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+        });
+        
+        cartTotalAmount.textContent = total + '€';
     }
 }
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function proceedToCheckout() {
+    if(cart.length === 0) {
+        alert("Your cart is empty. Add some tickets or store items first!");
+    } else {
+        alert("Redirecting to secure checkout platform...");
+        cart = [];
+        updateCartUI();
+        toggleCart();
+    }
+}
+// --- CERRAR MODAL AL HACER CLIC FUERA DE LA IMAGEN (EN EL FONDO) ---
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal');
+    
+    if (modal) {
+        modal.addEventListener('click', function(event) {
+            // event.target es el elemento exacto donde el usuario hizo clic.
+            // Si el clic es en el contenedor '#modal' (el fondo oscuro) 
+            // y NO dentro de '.modal-content' (la caja de la imagen), se cierra.
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
+});
