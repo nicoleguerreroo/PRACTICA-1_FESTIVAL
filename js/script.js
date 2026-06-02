@@ -131,3 +131,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// =========================================================================
+// NUEVA INTERACTIVIDAD: RETORNO AL INICIO Y MENÚ DE HAMBURGUESA RESPOSIVE
+// =========================================================================
+
+/**
+ * Realiza un scroll suave automático hasta la parte superior de la ventana web
+ */
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+/**
+ * Controla la apertura/cierre dinámico del menú de hamburguesa en entorno móvil
+ */
+function toggleMobileMenu() {
+    const navMenu = document.getElementById('navMenu');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    
+    if (navMenu && hamburgerBtn) {
+        navMenu.classList.toggle('open');
+        hamburgerBtn.classList.toggle('open');
+    }
+}
+
+// Escuchador para cerrar el menú del móvil si se pincha en un enlace de sección interno
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileLinks = document.querySelectorAll('.nav-links a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const navMenu = document.getElementById('navMenu');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            if (navMenu && navMenu.classList.contains('open')) {
+                navMenu.classList.remove('open');
+                hamburgerBtn.classList.remove('open');
+            }
+        });
+    });
+});

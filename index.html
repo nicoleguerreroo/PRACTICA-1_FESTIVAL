@@ -3,51 +3,68 @@
 <head>
     <title>TOMORROWLAND</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Titillium+Web&display=swap" rel="stylesheet">
+    
     <link href="img/FAVICON.png" rel="icon" type="image/png">
     <script src="https://kit.fontawesome.com/c3fd22b8e3.js" crossorigin="anonymous"></script>
+    
     <script src="js/script.js" defer></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <header>
-        <p>The Magic of Tomorrowland</p>
-        <nav id="menu">
-            <div>
-                <i class="fas fa-bars" onclick="openMenu()"></i>
-                <ul>
-                    <li><a href="#festival" onclick="closeMenu()">Festivals & events</a></li>
-                    <li><a href="#experiences" onclick="closeMenu()">Experiences</a></li>
-                    <li><a href="#store" onclick="closeMenu()">Store</a></li>
-                    <li><a href="#music" onclick="closeMenu()">Music</a></li>
-                    <li><a href="#more" onclick="closeMenu()">More</a></li>
-                    <li><a href="tickets.html">Tickets</a></li>
-                    <li><i class="fas fa-times" onclick="closeMenu()"></i></li>
-                </ul>
+
+    <header class="main-header">
+        <div class="header-container">
+            
+            <div class="logo-container" onclick="scrollToTop()" title="Volver al inicio">
+                <img src="img/FAVICON.png" alt="Tomorrowland Logo" class="header-logo">
+                <span class="brand-name">TOMORROWLAND</span>
             </div>
-            <div class="nav-icons">
-    <div class="search-box" id="searchBox">
-        <input type="text" placeholder="Search festival events, artists..." id="searchInput">
-        <i class="fas fa-search" onclick="toggleSearch()"></i>
-    </div>
-    
-    <a href="tickets.html" class="ticket-link" title="Buy Tickets">
-        <i class="fas fa-ticket-alt"></i>
-    </a>
-    
-    <div class="cart-icon-wrapper" onclick="toggleCart()">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-badge" id="cartBadge">0</span>
-    </div>
-    
-    <a href="https://open.spotify.com/playlist/6Q62ISe27ISRadDxLk6Aq0?si=883c4718644942e0" target="_blank" title="Listen on Spotify" class="spotify-link">
-        <i class="fas fa-music"></i>
-    </a>
-</div>
-        </nav>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="#festival">Festivals & events</a></li>
+                    <li><a href="#experiences">Experiences</a></li>
+                    <li><a href="#store">Store</a></li>
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#more">More</a></li>
+                    <li><a href="tickets.html">Tickets</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="nav-icons">
+                    <div class="search-box" id="searchBox">
+                        <input type="text" placeholder="Search..." id="searchInput">
+                        <i class="fas fa-search" onclick="toggleSearch()"></i>
+                    </div>
+                    
+                    <a href="tickets.html" class="ticket-link" title="Buy Tickets">
+                        <i class="fas fa-ticket-alt"></i>
+                    </a>
+                    
+                    <div class="cart-icon-wrapper" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </div>
+                    
+                    <a href="https://open.spotify.com/playlist/6Q62ISe27ISRadDxLk6Aq0?si=883c4718644942e0" target="_blank" title="Spotify Playlist" class="spotify-link">
+                        <i class="fas fa-music"></i>
+                    </a>
+                </div>
+
+                <div class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+        </div>
     </header>
 
     <section id="festival">
@@ -102,14 +119,14 @@
         <p>Take the magic home. Discover our exclusive collection of clothing, accessories, and unique vinyl releases.</p>
         <div class="store-grid">
             <figure>
-                <img src="img/escenario belgica.webp" alt="Official Apparel">
+                <img src="img/hoddie1.webp" alt="Official Apparel">
                 <figcaption>
                     <h3>Official Event Hoodie</h3>
                     <p>Premium heavy cotton hoodie featuring exclusive embroidery.</p>
                 </figcaption>
             </figure>
             <figure>
-                <img src="img/escenario belgica.webp" alt="Accessories">
+                <img src="img/hoddie2.webp" alt="Accessories">
                 <figcaption>
                     <h3>Classic Golden Cap</h3>
                     <p>Adjustable strap cap with the iconic Tomorrowland emblem.</p>
@@ -146,10 +163,7 @@
     <section id="contacto">
         <h2>CONTACT US</h2>
         <div class="contacto-container">
-            <iframe src="https://maps.google.com/maps?q=Boom,%20Belgium&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
-            <figure>
-                <img src="img/contacto.jpg" alt="Tomorrowland Office">
-            </figure>
+            <iframe src="https://maps.google.com/maps?q=Boom,%20Belgium&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Tomorrowland Location Map"></iframe>
         </div>
     </section>
 
@@ -166,22 +180,24 @@
             </figure>
         </div>
     </div>
+
     <div id="cartPanel" class="cart-sidebar">
-    <div class="cart-sidebar-header">
-        <h3>Shopping Cart</h3>
-        <i class="fas fa-times" onclick="toggleCart()"></i>
-    </div>
-    <div class="cart-sidebar-body">
-        <p id="emptyCartMessage" class="empty-cart">Your cart is empty.</p>
-        <div id="cartItemsContainer"></div>
-    </div>
-    <div class="cart-sidebar-footer">
-        <div class="cart-total">
-            <span>Total:</span>
-            <span id="cartTotalAmount">0€</span>
+        <div class="cart-sidebar-header">
+            <h3>Shopping Cart</h3>
+            <i class="fas fa-times" onclick="toggleCart()"></i>
         </div>
-        <button class="checkout-btn" onclick="proceedToCheckout()">Checkout Now</button>
+        <div class="cart-sidebar-body">
+            <p id="emptyCartMessage" class="empty-cart">Your cart is empty.</p>
+            <div id="cartItemsContainer"></div>
+        </div>
+        <div class="cart-sidebar-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotalAmount">0€</span>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">Checkout Now</button>
+        </div>
     </div>
-</div>
+
 </body>
 </html>
